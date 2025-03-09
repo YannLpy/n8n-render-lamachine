@@ -1,0 +1,17 @@
+const express = require('express');
+const app = express();
+
+// Middleware pour gérer les requêtes HEAD
+app.use((req, res, next) => {
+    if (req.method === "HEAD") {
+        res.status(200).end(); // Répondre "200 OK" aux requêtes HEAD
+    } else {
+        next();
+    }
+});
+
+// Lancer le serveur (assurez-vous que le port est bien défini)
+const PORT = process.env.PORT || 5678;
+app.listen(PORT, () => {
+    console.log(`Serveur en écoute sur le port ${PORT}`);
+});
